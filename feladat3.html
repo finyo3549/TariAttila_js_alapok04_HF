@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Feladat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const lista = [];
+        document.addEventListener("DOMContentLoaded", () =>  {
+            const urlap = document.forms["tetszoleges_urlap"];
+            urlap.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const username = urlap["username"].value;
+                const password1 = urlap["password1"].value;
+                const password2 = urlap["password2"].value;
+                const email = urlap["email"].value;
+                const date = urlap["date"].value;
+                const magassag = urlap["magassag"].value;
+                const suly = urlap["suly"].value;
+                let mindent_kitoltott = true;
+                if (username.length == 0) {
+                    window.alert("A felhasználónév megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (password1 != password2) {
+                    window.alert("Nem egyezik a két jelszó");
+                    mindent_kitoltott = false;
+                } 
+                if (email.length == 0) {
+                    window.alert("Az email cím megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (date.length == 0) {
+                    window.alert("A dátum megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (magassag.length == 0) {
+                    window.alert("A magasság  megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (suly.length == 0) {
+                    window.alert("A súly  megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (mindent_kitoltott) {
+                    const adatok = {
+                        nev: username,
+                        jelszo: password1,
+                        email: email,
+                        datum: date,
+                        magassag: magassag,
+                        suly: suly
+                    }
+                    lista.push(adatok);
+                    console.log(lista);
+                }
+            }) 
+        })
+    </script>
+</head>
+<body>
+    
+    <div class="container mt-3">
+        
+            <div class="container mt-3 mb-3">
+                <form id="tetszoleges_urlap">
+                <label for="username">Felhasználónév:</label>
+                <input type="text" class="form-control" id="username" name="username">
+           
+            <br>
+           
+                <label for="password1">Jelszó:</label>
+                <input type="password" class="form-control" id="password1" name="password1">
+            
+            <br>
+           
+                <label for="password2">Jelszó újra</label>
+                <input type="password" class="form-control" id="password2" name="password2">
+            
+            <br>
+           
+                <label for="email">E-mail cím</label>
+                <input type="email" class="form-control" id="email" name="email">
+          
+            <br>
+            
+                <label for="date">Születési dátum</label>
+                <input type="date" class="form-control" id="date" name="date">
+         
+            <br>
+         
+                <label for="magassag">Magasság</label>
+                <input type="number" class="form-control" id="magassag" name="magassag">
+          
+            <br>
+        
+                <label for="suly">testsúly:</label>
+                <input type="number" class="form-control" id="suly" name="suly">
+           
+            <br>
+            <button class="btn btn-success" type="submit">Regisztráció</button>
+            <button class="btn btn-danger" type="reset">Mezők törlése</button>
+        </form>
+    </div>
+</body>
+</html>
