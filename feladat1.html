@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Feladat</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlap = document.getElementById("atalakito_urlap");
+            
+            urlap.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const szoveg = document.getElementById("szoveg");
+                const szovegTartalom = szoveg.value;
+                const kisbetu = document.getElementById("kisbetu");
+                const nagybetu = document.getElementById("nagybetu");
+                if (!kisbetu.checked && !nagybetu.checked) {
+                    window.alert("Nincs kiválasztva, hogy kis vagy nagybetű legyen!");
+                }
+                else {
+                    if (kisbetu.checked) {
+                        szoveg.value = szovegTartalom.toLowerCase();
+
+                    
+                } else if (nagybetu.checked) {
+                    szoveg.value = szovegTartalom.toUpperCase();
+                }
+             }
+        });
+         });
+    </script>
+</head>
+<body>
+    <form id="atalakito_urlap" action="">
+        <div>
+            <label for="szoveg">Írd ide a szöveget:</label>
+            <input type="text" id="szoveg" name="szoveg">
+        </div>
+        <div>
+            <label for="kisbetu">kisbetűs</label>
+            <input type="radio" name="betu" id="kisbetu">
+            <label for="nagybetu">nagybetűs</label>
+            <input type="radio" name="betu" id="nagybetu">
+        </div>
+        <button type="submit">Átalakítás</button>
+    </form>
+</body>
+</html>
