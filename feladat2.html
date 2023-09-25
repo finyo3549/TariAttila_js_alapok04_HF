@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Feladat</title>
+    <script>
+        const lista = [];
+        document.addEventListener("DOMContentLoaded", () =>  {
+            const urlap = document.forms["regisztracios_urlap"];
+            urlap.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const username = urlap["username"].value;
+                const password1 = urlap["password1"].value;
+                const password2 = urlap["password2"].value;
+                const email = urlap["email"].value;
+                const date = urlap["date"].value;
+                let mindent_kitoltott = true;
+                if (username.length == 0) {
+                    window.alert("A név megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                else {
+                    if (username.length < 5  || username.length >16) {
+                        window.alert("A felhasználónév 5 és 16 karakter között legyen");
+                        mindent_kitoltott = false;
+                    }
+                }
+                if (password1 != password2) {
+                    window.alert("Nem egyezik a két jelszó");
+                    mindent_kitoltott = false;
+                } 
+                else { 
+                    if (password1.length < 5) {
+                        window.alert("A jelszó legalább 5 betű kell legyen!");
+                        mindent_kitoltott = false;
+                    }
+            }
+
+                if (email.length == 0) {
+                    window.alert("Az email cím megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (date.length == 0) {
+                    window.alert("A dátum megadása kötelező");
+                    mindent_kitoltott = false;
+                }
+                if (mindent_kitoltott) {
+                    const adatok = {
+                        nev: username,
+                        jelszo: password1,
+                        email: email,
+                        datum: date
+                    }
+                    lista.push(adatok);
+                    console.log(lista);
+                }
+            }) 
+        })
+    </script>
+</head>
+<body>
+    <form id="regisztracios_urlap">
+        <div>
+            <label for="username">Felhasználónév:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <br>
+        <div>
+            <label for="password1">Jelszó:</label>
+            <input type="password" id="password1" name="password1">
+        </div>
+        <br>
+        <div>
+            <label for="password2">Jelszó újra</label>
+            <input type="password" id="password2" name="password2">
+        </div>
+        <br>
+        <div>
+            <label for="email">E-mail cím</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <br>
+        <div>
+            <label for="date">Születési dátum</label>
+            <input type="date" id="date" name="date">
+        </div>
+        <br>
+        
+        <button type="submit">Regisztráció</button>
+    </form>
+</body>
+</html>
